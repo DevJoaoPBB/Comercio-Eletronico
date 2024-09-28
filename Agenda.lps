@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="Agenda.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="22"/>
+      </Unit>
+      <Unit>
+        <Filename Value="principal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Principal"/>
+        <TopLine Value="18"/>
+        <CursorPos X="58" Y="27"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="dmdados.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DataModule1"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="DmDados"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="100" Y="18"/>
+        <UsageCount Value="22"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\zeosdbo-8.0.0-stable\src\component\ZDatasetParam.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="4476"/>
+        <CursorPos X="37" Y="4499"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\zeosdbo-8.0.0-stable\packages\lazarus\zcomponent.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="u_cadempresa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CadEmpresa"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="U_CadEmpresa"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="3"/>
+        <CursorPos X="19" Y="36"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="21">
+      <Position>
+        <Filename Value="principal.pas"/>
+        <Caret Line="8" Column="18"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="principal.pas"/>
+        <Caret Line="62" Column="25" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="22" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="23" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="25" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="24" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="23" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="25" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="27" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="29" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="31" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="33" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="32" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="31" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="33" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="32" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="33" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="36" Column="19" TopLine="2"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="37" Column="19" TopLine="3"/>
+      </Position>
+      <Position>
+        <Filename Value="u_cadempresa.pas"/>
+        <Caret Line="36" Column="19" TopLine="3"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
