@@ -1,10 +1,10 @@
 object LocCidades: TLocCidades
   Left = 2235
-  Height = 499
-  Top = 238
+  Height = 550
+  Top = 187
   Width = 600
   Caption = 'Localize a cidade...'
-  ClientHeight = 499
+  ClientHeight = 550
   ClientWidth = 600
   KeyPreview = True
   OnKeyDown = FormKeyDown
@@ -14,7 +14,7 @@ object LocCidades: TLocCidades
   object Dbg: TDBGrid
     Left = 10
     Height = 417
-    Top = 72
+    Top = 123
     Width = 580
     Anchors = [akLeft, akRight, akBottom]
     Color = clWindow
@@ -65,15 +65,17 @@ object LocCidades: TLocCidades
     FixedColor = 16756398
     Font.Height = -13
     Font.Name = 'Arial'
-    Options = [dgTitles, dgIndicator, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
     ParentFont = False
     TabOrder = 0
     TitleStyle = tsNative
+    OnKeyDown = DbgKeyDown
+    OnKeyPress = DbgKeyPress
   end
   object EdtFiltro: TEdit
     Left = 10
     Height = 24
-    Top = 39
+    Top = 84
     Width = 580
     CharCase = ecUppercase
     Font.Height = -13
@@ -85,13 +87,44 @@ object LocCidades: TLocCidades
   end
   object Label1: TLabel
     Left = 10
-    Height = 17
-    Top = 15
-    Width = 109
+    Height = 18
+    Top = 60
+    Width = 116
     Caption = 'Nome da Cidade'
+    Font.Color = clHotLight
     Font.Height = -15
     Font.Name = 'Arial'
+    Font.Style = [fsBold]
     ParentFont = False
+  end
+  object BtSair: TColorSpeedButton
+    Left = 10
+    Height = 40
+    Top = 10
+    Width = 87
+    Caption = 'SAIR'
+    Font.Color = clWhite
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    OnClick = BtSairClick
+    ParentFont = False
+    TextAutoSize = True
+    Toggle = False
+    Pressed = False
+    PopupMode = False
+    StateNormal.Color = clRed
+    StateNormal.BorderColor = 11382189
+    StateNormal.BorderWidth = 1
+    StateHover.Color = 159
+    StateHover.BorderColor = 14120960
+    StateHover.BorderWidth = 1
+    StateActive.Color = clRed
+    StateActive.BorderColor = 10048512
+    StateActive.BorderWidth = 1
+    StateDisabled.Color = 13421772
+    StateDisabled.BorderColor = 12566463
+    StateDisabled.BorderWidth = 1
   end
   object DsCidades: TDataSource
     AutoEdit = False

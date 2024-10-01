@@ -27,6 +27,8 @@ type
     BtLocalizar: TColorSpeedButton;
     BtEditar: TColorSpeedButton;
     BtCancelar: TColorSpeedButton;
+    BtLocalizar1: TColorSpeedButton;
+    BtLocalizar2: TColorSpeedButton;
     BtSalvar: TColorSpeedButton;
     BtSair: TColorSpeedButton;
     EdtEmail: TEdit;
@@ -68,8 +70,6 @@ type
     Panel4: TPanel;
     PnCarregar: TPanel;
     PnExcluir: TPanel;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
     procedure BtCancelar1Click(Sender: TObject);
     procedure BtCancelarClick(Sender: TObject);
     procedure BtCarregarMouseEnter(Sender: TObject);
@@ -84,7 +84,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure GroupBox1Click(Sender: TObject);
     procedure PnNovoClick(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
+    procedure BtLocCidadesClick(Sender: TObject);
   private
     procedure LimpaCampos;
     procedure HabilitaCampos(Valor: String);
@@ -129,7 +129,7 @@ procedure TCadEmpresa.PnNovoClick(Sender: TObject);
 begin
   end;
 
-procedure TCadEmpresa.SpeedButton2Click(Sender: TObject);
+procedure TCadEmpresa.BtLocCidadesClick(Sender: TObject);
 begin
   LocCidades.ShowModal;
   EdtCidade.Text := LocCidades.DbCidades.FieldByName('CODIGO').AsString;

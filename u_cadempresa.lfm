@@ -247,15 +247,6 @@ object CadEmpresa: TCadEmpresa
       NumbersOnly = True
       TabOrder = 8
     end
-    object SpeedButton1: TSpeedButton
-      Left = 562
-      Height = 26
-      Hint = 'Cadastrar Cidades...'
-      Top = 231
-      Width = 28
-      Images = ImageList1
-      ImageIndex = 0
-    end
     object EdtCidade: TEdit
       Left = 90
       Height = 24
@@ -266,16 +257,6 @@ object CadEmpresa: TCadEmpresa
       Color = 13224393
       NumbersOnly = True
       TabOrder = 9
-    end
-    object SpeedButton2: TSpeedButton
-      Left = 534
-      Height = 26
-      Hint = 'Localizar cidades...'
-      Top = 231
-      Width = 28
-      Images = ImageList1
-      ImageIndex = 3
-      OnClick = SpeedButton2Click
     end
     object Label13: TLabel
       Left = 10
@@ -498,6 +479,64 @@ object CadEmpresa: TCadEmpresa
       ParentFont = False
       TabOrder = 17
     end
+    object BtLocalizar1: TColorSpeedButton
+      Left = 533
+      Height = 24
+      Top = 232
+      Width = 28
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      Images = ImageList1
+      ImageIndex = 3
+      ParentFont = False
+      TextAutoSize = True
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = clSkyBlue
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 14650434
+      StateHover.BorderColor = 10048512
+      StateHover.BorderWidth = 1
+      StateActive.Color = 12676128
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
+    object BtLocalizar2: TColorSpeedButton
+      Left = 562
+      Height = 24
+      Top = 232
+      Width = 28
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      Images = ImageList1
+      ImageIndex = 0
+      ParentFont = False
+      TextAutoSize = True
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = clSkyBlue
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 14650434
+      StateHover.BorderColor = 10048512
+      StateHover.BorderWidth = 1
+      StateActive.Color = 12676128
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
   end
   object Panel4: TPanel
     Left = 620
@@ -586,7 +625,7 @@ object CadEmpresa: TCadEmpresa
       StateNormal.Color = 617975
       StateNormal.BorderColor = 11382189
       StateNormal.BorderWidth = 1
-      StateHover.Color = 482253
+      StateHover.Color = 348081
       StateHover.BorderColor = 14120960
       StateHover.BorderWidth = 1
       StateActive.Color = 4621311
@@ -614,7 +653,7 @@ object CadEmpresa: TCadEmpresa
       StateNormal.Color = 16711808
       StateNormal.BorderColor = 11382189
       StateNormal.BorderWidth = 1
-      StateHover.Color = 12845154
+      StateHover.Color = 11534424
       StateHover.BorderColor = 14120960
       StateHover.BorderWidth = 1
       StateActive.Color = 16711808

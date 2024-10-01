@@ -81,6 +81,7 @@
         <Filename Value="u_componentes.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Componentes"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

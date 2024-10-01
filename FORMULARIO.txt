@@ -1,0 +1,533 @@
+unit U_PetCadPelagens;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, sSpeedButton,
+  Vcl.ExtCtrls, sPanel, Data.FMTBcd, Data.DB, Data.SqlExpr;
+
+type
+  TPetCadPelagens = class(TForm)
+    PnSair: TsPanel;
+    BtSair: TsSpeedButton;
+    PnLocalizar: TsPanel;
+    BtLocalizar: TsSpeedButton;
+    PnEditar: TsPanel;
+    BtEditar: TsSpeedButton;
+    PnIncluir: TsPanel;
+    BtIncluir: TsSpeedButton;
+    PnCancelar: TsPanel;
+    BtCancelar: TsSpeedButton;
+    PnSalvar: TsPanel;
+    BtSalvar: TsSpeedButton;
+    Label7: TLabel;
+    Panel52: TPanel;
+    EdtCodigo: TEdit;
+    Panel1: TPanel;
+    Label20: TLabel;
+    EdtNome: TEdit;
+    Qr: TSQLQuery;
+    TmDireitos: TTimer;
+    CbSituacao: TComboBox;
+    Label1: TLabel;
+    procedure EdtNomeKeyPress(Sender: TObject; var Key: Char);
+    procedure CbSituacaoKeyPress(Sender: TObject; var Key: Char);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormShow(Sender: TObject);
+    procedure BtIncluirClick(Sender: TObject);
+    procedure BtEditarClick(Sender: TObject);
+    procedure BtLocalizarClick(Sender: TObject);
+    procedure BtSairClick(Sender: TObject);
+    procedure BtCancelarClick(Sender: TObject);
+    procedure BtSalvarClick(Sender: TObject);
+    procedure TmDireitosTimer(Sender: TObject);
+    procedure EdtCodigoExit(Sender: TObject);
+    procedure EdtCodigoKeyPress(Sender: TObject; var Key: Char);
+  private
+    function  ValidaCampos: Boolean;
+    procedure LimpaCampos;
+    procedure HabilitaCampos(Valor: String);
+    function  Ler(Codigo: String): Boolean;
+
+  public
+    _CodigoConsulta: String;
+
+  end;
+
+var
+  PetCadPelagens: TPetCadPelagens;
+  _Status: String;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  U_DmDados,
+  U_Funcoes,
+  U_Status_Preto,
+  U_Abrir_Tela2,
+  U_PetCadPelagensLocalizar;
+
+function TPetCadPelagens.ValidaCampos: Boolean;
+begin
+  Result := False;
+
+  EdtNome.Text := Trim(EdtNome.Text);
+
+  if EdtNome.Text = '' then
+  begin
+    MsgAlerta('Campo nome é obrigatório!', 'A');
+    EdtNome.SetFocus;
+    Exit;
+  end;
+
+  //Verifica duplicidade de cadastro
+  try
+    with DmDados.Qr_Calculo do
+    begin
+      Close;
+      Sql.Clear;
+      Sql.Add('SELECT * FROM T540_PELAGENS');
+      Sql.Add('WHERE T540_CA_NOME =:T540_CA_NOME');
+      ParamByName('T540_CA_NOME').AsString := EdtNome.Text;
+
+      if _Status = 'EDITAR' then
+      begin
+        Sql.Add('AND T540_NR_CODIGO <>:T540_NR_CODIGO');
+        ParamByName('T540_NR_CODIGO').AsInteger := StrToInt(EdtCodigo.Text);
+      end;
+
+      Open;
+      if FieldByName('T540_NR_CODIGO').AsString <> '' then
+      begin
+        if not Pergunta('Já existe um cadastro com o nome informado.' + #13#10 +
+                        'Deseja continuar e duplicar o cadastro?', '1') then
+        begin
+          EdtNome.SetFocus;
+          Exit;
+        end;
+
+      end;
+    end;
+  except
+    on e : exception do
+    begin
+      MsgAlerta('Falha ao validar duplicidade de cadastro.' + #13#10 + e.message, 'E');
+      Exit;
+    end;
+  end;
+
+  Result := True;
+end;
+
+procedure TPetCadPelagens.LimpaCampos;
+begin
+  EdtCodigo.Clear;
+  EdtNome.Clear;
+  CbSituacao.ItemIndex := -1;
+end;
+
+procedure TPetCadPelagens.TmDireitosTimer(Sender: TObject);
+begin
+ {
+  TmDireitos.Enabled := False;
+
+  if not DireitoAcesso('755') then
+  begin
+    MsgAlerta('Direito de acesso negado!', 'A');
+    PetCadPelagem.Close;
+  end;
+  }
+end;
+
+procedure TPetCadPelagens.HabilitaCampos(Valor: String);
+begin
+  if Valor = 'I' then
+  begin
+    EdtCodigo.ReadOnly      := True;
+    EdtNome.ReadOnly        := False;
+    CbSituacao.Enabled      := True;
+
+    PnSalvar.Left           := 10;
+    PnCancelar.Left         := 130;
+    PnSalvar.Visible        := True;
+    PnCancelar.Visible      := True;
+    PnIncluir.Visible       := False;
+    PnEditar.Visible        := False;
+    PnLocalizar.Visible     := False;
+    PnSair.Visible          := False;
+  end;
+
+  if Valor = 'C' then
+  begin
+    EdtCodigo.ReadOnly      := False;
+    EdtNome.ReadOnly        := True;
+    CbSituacao.Enabled      := False;
+
+    PnSalvar.Visible        := False;
+    PnCancelar.Visible      := False;
+    PnIncluir.Visible       := True;
+    PnEditar.Visible        := True;
+    PnLocalizar.Visible     := True;
+    PnSair.Visible          := True;
+  end;
+end;
+
+function TPetCadPelagens.Ler(Codigo: String): Boolean;
+begin
+  Result := False;
+  try
+    with Qr do
+    begin
+      Close;
+      ParamByName('T540_NR_CODIGO').AsInteger := StrToInt(Codigo);
+      Open;
+      if FieldByName('T540_NR_CODIGO').AsString = '' then
+      begin
+        MsgAlerta('Pelagem não cadastrada!', 'A');
+        LimpaCampos;
+        EdtCodigo.SetFocus;
+        Exit;
+      end;
+
+      EdtCodigo.Text          := FieldByName('T540_NR_CODIGO').AsString;
+      EdtNome.Text            := FieldByName('T540_CA_NOME').AsString;
+      CbSituacao.ItemIndex    := 0;
+      if FieldByName('T540_CA_SITUACAO').AsString = 'I' then
+      begin
+        CbSituacao.ItemIndex := 1;
+      end;
+
+      Inclui_Log('CONSULTA CADASTRO DE PELAGENS DE ANIMAIS. PELAGEM: ' + EdtCodigo.Text + ' - ' + EdtNome.Text + '.');
+
+      _Status := 'NAVEGAR';
+      Result  := True;
+
+      if _CodigoConsulta = '' then
+      begin
+        BtEditar.Click;
+      end;
+    end;
+  except
+    on e : exception do
+    begin
+      Result := False;
+      MsgAlerta('Ocorreu uma falha ao ler os dados do cadastro.' + #13#10 + e.message, 'E');
+    end;
+  end;
+end;
+
+procedure TPetCadPelagens.BtCancelarClick(Sender: TObject);
+begin
+  if (_Status = 'INSERIR') or (_Status = 'EDITAR') then
+  begin
+    Inclui_Log('CANCELAMENTO EDICAO CADASTRO DE PELAGENS DE ANIMAIS, BOTAO CANCELAR. PELAGEM: ' +
+               EdtCodigo.Text + ' - ' + EdtNome.Text + '.');
+
+    LimpaCampos;
+    HabilitaCampos('C');
+    _Status := 'FECHAR';
+    EdtCodigo.SetFocus;
+  end;
+end;
+
+procedure TPetCadPelagens.BtEditarClick(Sender: TObject);
+begin
+  if (_Status = 'NAVEGAR') and (EdtCodigo.Text <> '') then
+  begin
+    HabilitaCampos('I');
+    EdtNome.SetFocus;
+    _Status := 'EDITAR';
+
+    Inclui_Log('ABERTURA EDICAO CADASTRO DE PELAGENS DE ANIMAIS. PELAGEM: ' + EdtCodigo.Text + ' - ' + EdtNome.Text + '.');
+  end;
+end;
+
+procedure TPetCadPelagens.BtIncluirClick(Sender: TObject);
+begin
+  if (_Status = 'FECHAR') or (_Status = 'NAVEGAR') then
+  begin
+    LimpaCampos;
+    HabilitaCampos('C');
+
+    Inclui_Log('ABERTURA INCLUSAO CADASTRO DE PELAGENS DE ANIMAIS.');
+
+    HabilitaCampos('I');
+    _Status              := 'INSERIR';
+    CbSituacao.ItemIndex := 0;
+    EdtNome.SetFocus;
+  end;
+end;
+
+procedure TPetCadPelagens.BtLocalizarClick(Sender: TObject);
+begin
+  if (_Status = 'FECHAR') or (_Status = 'NAVEGAR') then
+  begin
+    OpenForm(TPetCadPelagensLocalizar, PetCadPelagensLocalizar);
+
+    if PetCadPelagensLocalizar.Cds.FieldByName('T540_NR_CODIGO').AsString <> '' then
+    begin
+      Ler(PetCadPelagensLocalizar.Cds.FieldByName('T540_NR_CODIGO').AsString);
+    end;
+  end;
+end;
+
+procedure TPetCadPelagens.BtSairClick(Sender: TObject);
+begin
+  if (_Status = 'FECHAR') or (_Status = 'NAVEGAR') then
+  begin
+    Close;
+  end;
+end;
+
+procedure TPetCadPelagens.BtSalvarClick(Sender: TObject);
+var
+  Codigo: String;
+begin
+  if (_Status = 'INSERIR') or (_Status = 'EDITAR') then
+  begin
+    if not ValidaCampos then
+    begin
+      Exit;
+    end;
+
+    try
+      ExecutaTransacao('S');
+
+      with DmDados.Qr_Gravar do
+      begin
+        Close;
+        Sql.Clear;
+
+        if _Status = 'INSERIR' then
+        begin
+          Sql.Add('INSERT INTO T540_PELAGENS (');
+          Sql.Add('T540_CA_NOME,');
+          Sql.Add('T540_CA_SITUACAO)');
+          Sql.Add('VALUES (');
+          Sql.Add(':T540_CA_NOME,');
+          Sql.Add(':T540_CA_SITUACAO)');
+        end;
+
+        if _Status = 'EDITAR' then
+        begin
+          Sql.Add('UPDATE T540_PELAGENS SET');
+          Sql.Add('T540_CA_NOME =:T540_CA_NOME,');
+          Sql.Add('T540_CA_SITUACAO =:T540_CA_SITUACAO');
+          Sql.Add('WHERE T540_NR_CODIGO =:T540_NR_CODIGO');
+          ParamByName('T540_NR_CODIGO').AsInteger := StrToInt(EdtCodigo.Text);
+        end;
+
+        ParamByName('T540_CA_NOME').AsString     := AcertaString(EdtNome.Text);
+        ParamByName('T540_CA_SITUACAO').AsString := Copy(CbSituacao.Text, 1,1);
+
+        ExecSql;
+        Close;
+      end;
+
+       //Seleciona o codigo
+      if _Status = 'INSERIR' then
+      begin
+         with DmDados.Qr_Gravar do
+         begin
+           Close;
+           Sql.Clear;
+           Sql.Add('SELECT MAX(T540_NR_CODIGO)AS CODIGO FROM T540_PELAGENS');
+           Sql.Add('WHERE T540_CA_NOME =:T540_CA_NOME');
+           Sql.Add('AND T540_CA_SITUACAO=:T540_CA_SITUACAO');
+           ParamByName('T540_CA_NOME').AsString     := AcertaString(EdtNome.Text);
+           ParamByName('T540_CA_SITUACAO').AsString  := Copy(CbSituacao.Text, 1,1);
+           Open;
+           if (FieldByName('CODIGO').AsInteger <= 0) or (FieldByName('CODIGO').AsString = '') then
+           begin
+             ExecutaTransacao('R');
+             MsgAlerta('Ocorreu uma falha ao salvar o cadastro.' + #13#10 +
+                       'Código não pode ser recuperado.', 'E');
+
+             LimpaCampos;
+             HabilitaCampos('C');
+             _Status := 'FECHAR';
+             EdtCodigo.SetFocus;
+             Exit;
+           end;
+          Codigo := FieldByName('CODIGO').AsString;
+         end;
+      end;
+
+      ExecutaTransacao('C');
+    except
+      on e : exception do
+      begin
+        ExecutaTransacao('R');
+        MsgAlerta('Ocorreu uma falha ao salvar o cadastro.' + #13#10 + e.message, 'E');
+
+        LimpaCampos;
+        HabilitaCampos('C');
+        _Status := 'FECHAR';
+        EdtCodigo.SetFocus;
+        Exit;
+      end;
+    end;
+
+    if _Status = 'INSERIR' then
+    begin
+      Inclui_Log('INCLUSAO CADASTRO DE PELAGENS DE ANIMAIS. PELAGEM: ' + Codigo + '.');
+    end;
+
+    if _Status = 'EDITAR' then
+    begin
+      Inclui_Log('EDICAO CADASTRO DE PELAGENS DE ANIMAIS. PELAGEM: ' + EdtCodigo.Text + '.');
+    end;
+
+    LimpaCampos;
+    HabilitaCampos('C');
+    EdtCodigo.SetFocus;
+
+    if _Status = 'INSERIR' then
+    begin
+      EdtCodigo.Text := Codigo;
+    end;
+
+    _Status := 'FECHAR';
+  end;
+end;
+
+procedure TPetCadPelagens.CbSituacaoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 1, 0);
+  end;
+end;
+
+procedure TPetCadPelagens.EdtCodigoExit(Sender: TObject);
+begin
+  if (_Status = 'FECHAR') or (_Status = 'NAVEGAR')then
+  begin
+    if EdtCodigo.Text = '' then
+    begin
+      _Status := 'FECHAR';
+      LimpaCampos;
+    end;
+  end;
+end;
+
+procedure TPetCadPelagens.EdtCodigoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 1, 0);
+
+    if (_Status = 'FECHAR') or (_Status = 'NAVEGAR') then
+    begin
+      if EdtCodigo.Text = '' then
+      begin
+        _Status := 'FECHAR';
+        LimpaCampos;
+        BtIncluir.Click;
+      end;
+
+      if EdtCodigo.Text <> '' then
+      begin
+        Ler(EdtCodigo.Text);
+      end;
+    end;
+  end;
+
+  if (not (Key in ['0'..'9'])) and (Key <> #8) then
+  begin
+    Key := #0;
+  end;
+end;
+
+procedure TPetCadPelagens.EdtNomeKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 1, 0);
+  end;
+end;
+
+procedure TPetCadPelagens.FormKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if (Key = Vk_F11) then
+  begin
+    Application.ProcessMessages;
+    if (Abrir_Telas2 <> nil ) then
+    begin
+      Abrir_Telas2.Hide;
+    end;
+    Abrir_Telas2 := TAbrir_Telas2.Create(Application);
+    Abrir_Telas2.Show;
+    Abrir_Telas2.BringToFront;
+    Application.ProcessMessages;
+  end;
+
+  if Key = Vk_F9 then
+  begin
+    BtLocalizar.Click;
+  end;
+
+  if Key = Vk_F2 then
+  begin
+    BtIncluir.Click;
+  end;
+
+  if Key = Vk_F4 then
+  begin
+    BtSalvar.Click;
+  end;
+
+  if Key = Vk_F5 then
+  begin
+    BtEditar.Click;
+  end;
+
+  if Key = Vk_F6 then
+  begin
+    BtCancelar.Click;
+  end;
+
+  if Key = VK_ESCAPE then
+  begin
+    BtSair.Click;
+  end;
+end;
+
+procedure TPetCadPelagens.FormKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if Key = #27 then
+  begin
+    Key := #0;
+  end;
+end;
+
+procedure TPetCadPelagens.FormShow(Sender: TObject);
+begin
+  LimpaCampos;
+  HabilitaCampos('C');
+  EdtCodigo.SetFocus;
+  _Status             := 'FECHAR';
+  TmDireitos.Enabled  := True;
+
+  if _CodigoConsulta <> '' then
+  begin
+    Ler(_CodigoConsulta);
+    _CodigoConsulta := '';
+  end;
+
+  Inclui_Log('ACESSO A TELA CADASTRO DE PELAGENS DE ANIMAIS.');
+end;
+
+end.
