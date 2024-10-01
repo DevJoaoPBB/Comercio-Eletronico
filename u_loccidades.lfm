@@ -1,0 +1,160 @@
+object LocCidades: TLocCidades
+  Left = 2235
+  Height = 499
+  Top = 238
+  Width = 600
+  Caption = 'Localize a cidade...'
+  ClientHeight = 499
+  ClientWidth = 600
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '3.4.0.0'
+  object Dbg: TDBGrid
+    Left = 10
+    Height = 417
+    Top = 72
+    Width = 580
+    Anchors = [akLeft, akRight, akBottom]
+    Color = clWindow
+    Columns = <    
+      item
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Title.Font.Height = -13
+        Title.Font.Name = 'Arial'
+        Title.Font.Style = [fsBold]
+        Title.Caption = 'CODIGO'
+        Width = 60
+        FieldName = 'CODIGO'
+      end    
+      item
+        Title.Font.Height = -13
+        Title.Font.Name = 'Arial'
+        Title.Font.Style = [fsBold]
+        Title.Caption = 'NOME'
+        Width = 287
+        FieldName = 'NOME'
+      end    
+      item
+        Title.Font.Height = -13
+        Title.Font.Name = 'Arial'
+        Title.Font.Style = [fsBold]
+        Title.Caption = 'CEP'
+        Width = 80
+        FieldName = 'CEP'
+      end    
+      item
+        Title.Font.Height = -13
+        Title.Font.Name = 'Arial'
+        Title.Font.Style = [fsBold]
+        Title.Caption = 'UF'
+        Width = 30
+        FieldName = 'UF'
+      end    
+      item
+        Title.Font.Height = -13
+        Title.Font.Name = 'Arial'
+        Title.Font.Style = [fsBold]
+        Title.Caption = 'IBGE'
+        Width = 90
+        FieldName = 'IBGE'
+      end>
+    DataSource = DsCidades
+    FixedColor = 16756398
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Options = [dgTitles, dgIndicator, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
+    ParentFont = False
+    TabOrder = 0
+    TitleStyle = tsNative
+  end
+  object EdtFiltro: TEdit
+    Left = 10
+    Height = 24
+    Top = 39
+    Width = 580
+    CharCase = ecUppercase
+    Font.Height = -13
+    Font.Name = 'Arial'
+    ParentFont = False
+    TabOrder = 1
+    OnChange = EdtFiltroChange
+    OnKeyPress = EdtFiltroKeyPress
+  end
+  object Label1: TLabel
+    Left = 10
+    Height = 17
+    Top = 15
+    Width = 109
+    Caption = 'Nome da Cidade'
+    Font.Height = -15
+    Font.Name = 'Arial'
+    ParentFont = False
+  end
+  object DsCidades: TDataSource
+    AutoEdit = False
+    DataSet = DbCidades
+    Left = 432
+    Top = 112
+  end
+  object DbCidades: TDbf
+    FilePath = 'C:\Users\Admin\Documents\ESTUDOS\Agenda\BD\'
+    IndexDefs = <>
+    TableName = 'T001_CIDADES.dbf'
+    TableLevel = 4
+    FilterOptions = [foCaseInsensitive]
+    Left = 472
+    Top = 112
+    object DbCidadesCODIGO: TLargeintField
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object DbCidadesNOME: TStringField
+      FieldKind = fkData
+      FieldName = 'NOME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object DbCidadesCEP: TStringField
+      FieldKind = fkData
+      FieldName = 'CEP'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+    object DbCidadesUF: TStringField
+      FieldKind = fkData
+      FieldName = 'UF'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2
+    end
+    object DbCidadesIBGE: TStringField
+      FieldKind = fkData
+      FieldName = 'IBGE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+  end
+end

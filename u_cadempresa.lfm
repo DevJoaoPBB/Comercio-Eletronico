@@ -1,12 +1,13 @@
 object CadEmpresa: TCadEmpresa
-  Left = 256
-  Height = 546
-  Top = 145
-  Width = 610
+  Left = 2333
+  Height = 774
+  Top = 114
+  Width = 761
   Caption = 'Cadastro da Empresa...'
-  ClientHeight = 546
-  ClientWidth = 610
+  ClientHeight = 774
+  ClientWidth = 761
   Color = clWhite
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '3.4.0.0'
   Scaled = False
@@ -14,10 +15,10 @@ object CadEmpresa: TCadEmpresa
     Left = 10
     Height = 58
     Top = 0
-    Width = 590
+    Width = 741
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Cadastro da Empresa'
-    Color = clGradientActiveCaption
+    Color = clSkyBlue
     Font.Height = -16
     Font.Name = 'Arial'
     Font.Quality = fqProof
@@ -28,147 +29,763 @@ object CadEmpresa: TCadEmpresa
     TabOrder = 0
   end
   object GroupBox1: TGroupBox
-    Left = 8
-    Height = 472
-    Top = 64
-    Width = 590
-    Anchors = [akTop, akLeft, akRight]
-    ClientHeight = 451
-    ClientWidth = 586
-    Color = clBtnFace
+    Left = 10
+    Height = 701
+    Top = 61
+    Width = 600
+    Anchors = []
+    ClientHeight = 680
+    ClientWidth = 596
+    Color = clWhite
     Font.Height = -13
     Font.Name = 'Arial'
     ParentBackground = False
     ParentColor = False
     ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 1
+    OnClick = GroupBox1Click
     object Label1: TLabel
-      Left = 53
+      Left = 10
       Height = 16
-      Top = 8
-      Width = 34
+      Top = 47
+      Width = 37
       Caption = 'Nome'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
       ParentBidiMode = False
+      ParentColor = False
+      ParentFont = False
     end
     object Label2: TLabel
       Left = 10
       Height = 16
-      Top = 37
-      Width = 77
+      Top = 89
+      Width = 84
       Caption = 'Razão Social'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
     end
-    object Edit1: TEdit
-      Left = 93
+    object EdtNome: TEdit
+      Left = 10
       Height = 24
-      Top = 8
-      Width = 483
+      Top = 64
+      Width = 580
+      CharCase = ecUppercase
+      Font.Height = -13
+      Font.Name = 'Arial'
+      ParentFont = False
       TabOrder = 0
-      Text = 'Edit1'
     end
-    object Edit2: TEdit
-      Left = 93
+    object EdtRazao: TEdit
+      Left = 10
       Height = 24
-      Top = 33
-      Width = 483
+      Top = 106
+      Width = 580
+      CharCase = ecUppercase
       TabOrder = 1
-      Text = 'Edit2'
     end
-    object Edit3: TEdit
-      Left = 93
+    object EdtEndereco: TEdit
+      Left = 10
       Height = 24
-      Top = 58
-      Width = 483
+      Top = 148
+      Width = 580
+      CharCase = ecUppercase
       TabOrder = 2
-      Text = 'Edit3'
     end
     object Label3: TLabel
-      Left = 32
+      Left = 10
       Height = 16
-      Top = 62
-      Width = 55
+      Top = 131
+      Width = 60
       Caption = 'Endereço'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
     end
     object Label4: TLabel
-      Left = 42
+      Left = 10
       Height = 16
-      Top = 87
-      Width = 45
+      Top = 173
+      Width = 50
       Caption = 'Numero'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
     end
-    object Edit4: TEdit
-      Left = 93
+    object EdtNumero: TEdit
+      Left = 10
       Height = 24
-      Top = 83
-      Width = 115
+      Top = 190
+      Width = 118
+      CharCase = ecUppercase
       TabOrder = 3
-      Text = 'Edit4'
     end
     object Label5: TLabel
-      Left = 212
+      Left = 130
       Height = 16
-      Top = 87
-      Width = 34
+      Top = 173
+      Width = 39
       Caption = 'Bairro'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
     end
-    object Edit5: TEdit
-      Left = 252
+    object EdtBairro: TEdit
+      Left = 130
       Height = 24
-      Top = 83
-      Width = 324
+      Top = 190
+      Width = 460
+      CharCase = ecUppercase
       TabOrder = 4
-      Text = 'Edit5'
     end
     object Label6: TLabel
-      Left = 42
+      Left = 10
       Height = 16
-      Top = 112
-      Width = 40
+      Top = 215
+      Width = 45
       Caption = 'Cidade'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
     end
-    object Edit6: TEdit
-      Left = 93
+    object EdtCodCidade: TEdit
+      Left = 10
       Height = 24
-      Top = 108
-      Width = 284
+      Hint = 'Código da Cidade'
+      Top = 232
+      Width = 78
+      CharCase = ecUppercase
       TabOrder = 5
-      Text = 'Edit6'
     end
-    object Label7: TLabel
-      Left = 382
-      Height = 16
-      Top = 112
-      Width = 17
-      Caption = 'UF'
-    end
-    object ComboBox1: TComboBox
-      Left = 406
+    object EdtCep: TMaskEdit
+      Left = 462
       Height = 24
-      Top = 108
-      Width = 44
-      ItemHeight = 16
-      Items.Strings = (
-        'SP'
-        'PR'
-      )
-      TabOrder = 6
-    end
-    object Label8: TLabel
-      Left = 455
-      Height = 16
-      Top = 112
-      Width = 27
-      Caption = 'CEP'
-    end
-    object MaskEdit1: TMaskEdit
-      Left = 489
-      Height = 24
-      Top = 108
-      Width = 87
+      Hint = 'CEP da Cidade'
+      Top = 232
+      Width = 70
       EnableSets = False
-      MaxLength = 0
-      TabOrder = 7
-      Text = 'MaskEdit1'
+      MaxLength = 9
+      TabOrder = 6
+      EditMask = '00000-000;1;_'
+      Text = '     -   '
       SpaceChar = '_'
     end
+    object Label11: TLabel
+      Left = 10
+      Height = 16
+      Top = 301
+      Width = 34
+      Caption = 'CNPJ'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label12: TLabel
+      Left = 142
+      Height = 16
+      Top = 301
+      Width = 16
+      Caption = 'I.E'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 10
+      Height = 16
+      Top = 261
+      Width = 89
+      Caption = 'Complemento'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object EdtComplemento: TEdit
+      Left = 10
+      Height = 24
+      Top = 277
+      Width = 580
+      CharCase = ecUppercase
+      TabOrder = 7
+    end
+    object EdtUf: TEdit
+      Left = 428
+      Height = 24
+      Top = 232
+      Width = 32
+      CharCase = ecUppercase
+      Color = 13224393
+      NumbersOnly = True
+      TabOrder = 8
+    end
+    object SpeedButton1: TSpeedButton
+      Left = 562
+      Height = 26
+      Hint = 'Cadastrar Cidades...'
+      Top = 231
+      Width = 28
+      Images = ImageList1
+      ImageIndex = 0
+    end
+    object EdtCidade: TEdit
+      Left = 90
+      Height = 24
+      Hint = 'Nome da Cidade'
+      Top = 232
+      Width = 336
+      CharCase = ecUppercase
+      Color = 13224393
+      NumbersOnly = True
+      TabOrder = 9
+    end
+    object SpeedButton2: TSpeedButton
+      Left = 534
+      Height = 26
+      Hint = 'Localizar cidades...'
+      Top = 231
+      Width = 28
+      Images = ImageList1
+      ImageIndex = 3
+      OnClick = SpeedButton2Click
+    end
+    object Label13: TLabel
+      Left = 10
+      Height = 16
+      Top = 341
+      Width = 55
+      Caption = 'Telefone'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object EdtTelefone: TMaskEdit
+      Left = 10
+      Height = 24
+      Top = 355
+      Width = 110
+      EnableSets = False
+      MaxLength = 0
+      TabOrder = 10
+      SpaceChar = '_'
+    end
+    object EdtCnpj: TEdit
+      Left = 10
+      Height = 24
+      Top = 315
+      Width = 130
+      CharCase = ecUppercase
+      TabOrder = 11
+    end
+    object Label14: TLabel
+      Left = 122
+      Height = 16
+      Top = 341
+      Width = 46
+      Caption = 'Celular'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object EdtCelular: TMaskEdit
+      Left = 122
+      Height = 24
+      Top = 355
+      Width = 133
+      CharCase = ecUppercase
+      EnableSets = False
+      MaxLength = 0
+      TabOrder = 12
+      SpaceChar = '_'
+    end
+    object Label15: TLabel
+      Left = 257
+      Height = 16
+      Top = 338
+      Width = 36
+      Caption = 'Email'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object EdtEmail: TEdit
+      Left = 257
+      Height = 24
+      Top = 355
+      Width = 333
+      CharCase = ecUppercase
+      TabOrder = 13
+    end
+    object EdtIE: TEdit
+      Left = 142
+      Height = 24
+      Top = 315
+      Width = 130
+      CharCase = ecUppercase
+      TabOrder = 14
+    end
+    object Panel2: TPanel
+      Left = 10
+      Height = 40
+      Top = 637
+      Width = 580
+      BevelOuter = bvNone
+      ClientHeight = 40
+      ClientWidth = 580
+      Color = clBlack
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 15
+      object PnCarregar: TPanel
+        Left = 10
+        Height = 33
+        Top = 3
+        Width = 150
+        BevelOuter = bvNone
+        ClientHeight = 33
+        ClientWidth = 150
+        Color = clBlack
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 0
+        object BtCarregar: TSpeedButton
+          Left = 0
+          Height = 33
+          Top = 0
+          Width = 150
+          Align = alClient
+          Caption = 'CARREGAR LOGO'
+          Color = clHighlightText
+          Flat = True
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Images = ImageList1
+          ImageIndex = 4
+          Margin = 5
+          OnMouseEnter = BtCarregarMouseEnter
+          OnMouseLeave = BtCarregarMouseLeave
+          ShowHint = True
+          ParentFont = False
+          ParentShowHint = False
+        end
+      end
+      object PnExcluir: TPanel
+        Left = 162
+        Height = 33
+        Top = 3
+        Width = 130
+        BevelOuter = bvNone
+        ClientHeight = 33
+        ClientWidth = 130
+        Color = clBlack
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 1
+        object BtExcluirLogo: TSpeedButton
+          Left = 0
+          Height = 33
+          Top = 0
+          Width = 130
+          Align = alClient
+          Caption = 'EXCLUIR LOGO'
+          Flat = True
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Images = ImageList1
+          ImageIndex = 2
+          Margin = 7
+          Spacing = 0
+          OnClick = BtExcluirLogoClick
+          OnMouseEnter = BtExcluirLogoMouseEnter
+          OnMouseLeave = BtExcluirLogoMouseLeave
+          ShowHint = True
+          ParentFont = False
+          ParentShowHint = False
+        end
+      end
+    end
+    object Panel3: TPanel
+      Left = 10
+      Height = 248
+      Top = 389
+      Width = 580
+      BevelOuter = bvNone
+      BorderStyle = bsSingle
+      Caption = 'Carregue sua logo aqui'
+      ClientHeight = 244
+      ClientWidth = 576
+      Font.Color = clGray
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 16
+      object Img: TImage
+        Left = 0
+        Height = 244
+        Top = 0
+        Width = 576
+        Align = alClient
+        Center = True
+      end
+    end
+    object Label7: TLabel
+      Left = 10
+      Height = 16
+      Top = 0
+      Width = 45
+      Caption = 'Código'
+      Color = clBtnFace
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentBidiMode = False
+      ParentColor = False
+      ParentFont = False
+    end
+    object EdtCodigo: TEdit
+      Left = 10
+      Height = 24
+      Top = 17
+      Width = 78
+      CharCase = ecUppercase
+      Color = clSilver
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 17
+    end
+  end
+  object Panel4: TPanel
+    Left = 620
+    Height = 704
+    Top = 58
+    Width = 131
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ClientHeight = 704
+    ClientWidth = 131
+    Color = clSkyBlue
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 2
+    object BtIncluir: TColorSpeedButton
+      Left = 8
+      Height = 40
+      Top = 10
+      Width = 115
+      Caption = 'NOVO'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      OnClick = BtIncluirClick
+      ParentFont = False
+      TextAutoSize = False
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = clGreen
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 21248
+      StateHover.BorderColor = 14120960
+      StateHover.BorderWidth = 1
+      StateActive.Color = clGreen
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
+    object BtExcluir: TColorSpeedButton
+      Left = 8
+      Height = 40
+      Top = 55
+      Width = 115
+      Caption = 'EXCLUIR'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TextAutoSize = True
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = clRed
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 159
+      StateHover.BorderColor = 14120960
+      StateHover.BorderWidth = 1
+      StateActive.Color = clRed
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
+    object BtLocalizar: TColorSpeedButton
+      Left = 8
+      Height = 40
+      Top = 100
+      Width = 115
+      Caption = 'LOCALIZAR'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TextAutoSize = True
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = 617975
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 482253
+      StateHover.BorderColor = 14120960
+      StateHover.BorderWidth = 1
+      StateActive.Color = 4621311
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
+    object BtEditar: TColorSpeedButton
+      Left = 8
+      Height = 40
+      Top = 145
+      Width = 115
+      Caption = 'EDITAR'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TextAutoSize = True
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = 16711808
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 12845154
+      StateHover.BorderColor = 14120960
+      StateHover.BorderWidth = 1
+      StateActive.Color = 16711808
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
+    object BtCancelar: TColorSpeedButton
+      Left = 8
+      Height = 40
+      Top = 235
+      Width = 115
+      Caption = 'CANCELAR'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      OnClick = BtCancelarClick
+      ParentFont = False
+      TextAutoSize = True
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = clRed
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 159
+      StateHover.BorderColor = 14120960
+      StateHover.BorderWidth = 1
+      StateActive.Color = clRed
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
+    object BtSalvar: TColorSpeedButton
+      Left = 8
+      Height = 40
+      Top = 190
+      Width = 115
+      Caption = 'SALVAR'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TextAutoSize = False
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = clGreen
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 21248
+      StateHover.BorderColor = 14120960
+      StateHover.BorderWidth = 1
+      StateActive.Color = clGreen
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
+    object BtSair: TColorSpeedButton
+      Left = 8
+      Height = 40
+      Top = 411
+      Width = 115
+      Caption = 'SAIR'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      OnClick = BtSairClick
+      ParentFont = False
+      TextAutoSize = True
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = clRed
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 1
+      StateHover.Color = 159
+      StateHover.BorderColor = 14120960
+      StateHover.BorderWidth = 1
+      StateActive.Color = clRed
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 1
+      StateDisabled.Color = 13421772
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 1
+    end
+  end
+  object Op: TOpenPictureDialog
+    Left = 344
+    Top = 520
+  end
+  object ImageList1: TImageList
+    Left = 429
+    Top = 352
+    Bitmap = {
+      4C7A060000001000000010000000410800000000000078DAD596795453571AC0
+      890AC5C12332CAA2A333B608D6204B0314512A45A9ED58050454960061530441
+      40B1888AE0426519053B3D228A489D6A950A222DC9309422625116C59D5A1008
+      0611B154110D4BFCE6BB8F973460120274FE9877CEEFDC7797DFBDDFFDDEBB79
+      010095FE8A6F748407565523F006290ED0FBEDB66AE8EFD6041C2B0BF4A364BA
+      94BF12FAF262A1FF76DE4DE86AFF8B1C7FCBB0FE9D0BD07FE3DB66511D6FDEC8
+      7C07E8CBDD01A27B0520BA750E4437CF75BC6E28B351DA477A525DE0E5D91868
+      3EB2197EFE2202EABF8C7CD6F15381A3B23E3507D27BC0099EECFE146A43ECA0
+      F9FCF1E891F8D2F4A63A83E8CA375B46EB1388F3A6EF043D47FC4074BF024475
+      E583C136D247C6C8F7719F877DA0BFF29C4C489FE2F591B435D0F3AF48E83919
+      31186C237DC3F9D4FA57CE0EA62A0FFA6BF2A127DD67F8FD67E0FEEBAFE27E2F
+      0F80F73DD961204C5E21D9BBC2F84797FFA851F85152BEFCF32B9B6AE210377E
+      B3C77FC2BCED603424EE0CE406B85A829FB3390D4B4906C687B01703F17D57B1
+      E0C2D96361F7EF5E335786AFD2F7450CF5AF5795DBCBFB7D1ACAF7B9C7ED491C
+      D2FEBF0B4E7B34D6DF9BAE0C5F1F4B624BAF2FDE8FBF8B85520CDD3F89256693
+      23EC89F180BDC87A376B8808F888AA13C2FD974290FB42497D5B98C31BF9FB3C
+      D61BD29282E150723084782D86983047AA4E880E5D09A13E1F425AF2403D6107
+      1BA4F74FE60AF5B685C8C08F28FC5D2DA8F5C4F520776B1C6721A96FF4FE6070
+      FCB8FEBEED9E909A18846C80604F1B88DEB882AE07C1D6E0E5E0CB590B9CC36D
+      482B70F61450CEA0F8777A61EC2170282504DB3FA0F648D5113297AF9F17708E
+      740027BD1D3809C5837C124B30DB06C2FD9652F8B998C3BAB50B24F5756BAD14
+      FA92FC250753EB49F247F2953C903FC5EBB360D71657488CE35090DC6D59FF89
+      A4BE79DD32F0F572044E4A155209BE31996FE49FC420467C967EAFD36DABCC68
+      DE93E47FACE75745EA3233319958CAE55E2EE5F13A915FF1FE177F5FDFD92A0A
+      2E5313130D1F36FB1DC2C1A4A4D53F72B9E5E23AFA47B12D565C677B78680DF5
+      714C133AA0242F39EEEED307F93C5EC18F3C5EB99294F8B9B9E90E8ADFD494C1
+      61B3572803E64753560E700FDD747C6574F904A923F7D85789A590DCFB787A1A
+      C8F1A91C9C3B7D5A8BF64FE0D870728FEBDA60FF6DDA97B93EF65551FD5E5EBA
+      58BEA2FD4DB46388651BD2C36432653E43CCCBF7D458367B3EAEC597F6931212
+      A662D987ED0279EF00FA27E85897E07D8D94DF97969A3A95CE43AD3CBFB4A828
+      998E752D965CB18FCFF611C63497CE49913C9FE3E91945FB1BB1FC4AE273B937
+      D1B7A1FDAFE5F938D6978C49DBBF3FBEB4B0F01F92F879BC62DC9333E92BE1F1
+      52E59E0163E32938DEDC9BCD9EB92934743A96B3F15DD1C1367D3C1F7F267D1E
+      6E6E33E4AECF661BE11A0D8AC03856CBF3CD8C8D5571AFC538EEB59C73730FE3
+      D193E58ABF89A5B56D93BD13785B1D624EB4BAEF3ED167B53EFB42C2995A4B65
+      BEA7E5771FCD8F3A74F2E1BDCA1C68B89603F53539D0783D07B8BC33E07790BB
+      5F915B7AEDD1A4ADFF3CDDD2DE7415040F2A11715909ADC8CD6BC5B07A2F6F83
+      3CDF6B7761446B630D74B63740E7E3DFF9ADBD1179005D1D4D109F99DB5AFAD3
+      C3F1B27CC7EDA79B84BFB540F7B376E4315576A22768B80AFCFB9730862A28AB
+      2883F8EC6AA62CDF3B31AFBB835F034F0477E0696B1D3C6EAEA5DC563A7EC2D5
+      EA72883B59CD92E55BFB669DEA6AAF830EC15D8A2734D2F5DC928ADEB8941FA6
+      C8F2F7655D31B95C7B1B9E3DE5C3B38E66844FD34C217C2E00BB902FB88A9E01
+      E74071EC03412BF4BCEC84575D4F29842F7E85BE9EE7107B8C0B2A13345EAF74
+      7209503487EB67799C7D67AA1A2AEFB7C1ADE60EC8BFD220B40DF9B288314103
+      C86BC6603060B8394A4B2F31E2322ECD89CBAE308D4BCC9A4CDA9C9C5DC2882B
+      3547A0B2FFF3C43839BB0E9D2360EC73B88E228E217B71740E1ACB1CE6161630
+      529FB0D2C129DCC2D2125EBCE80295315EDADADA93757574B4470371F137967C
+      1BBB4709F55DD5D3D5D51869DCC411FF3E0EF5ADDF7FDF2A3B23A36CEFAE5DE9
+      EAEAEA13C4ED860606FA2C33B3F9C3F9C7D3D34BC47D76B6B6CB49DB5C43C3B7
+      0B737305BCFCFC4E6323235345FECEE8E883A4BDF8BBEF5E32E7CD9B336BE6CC
+      19E74E9D6A108F2FCCCB7B6CBF64C97BD23EBE132AD19B37C705050484ABAAAA
+      8EC375971ACC99F3CE5F67CD9A86EE9DA1DF049CFB91B4BF29246487B8BE2130
+      3088C4A1A5A53539FBE8D1EAE1FE97C56DDFBE6D489B08BF7901E8968DE0BFDD
+      FF2703EFEF687DE158CF8FCAFFF21AA7C250359AB84863F9D47082AAF1C445D8
+      A6C2D09E30ED4F765A9E8AD4F133D5F4F592DFAD34E42E8479258BC1ECA23D58
+      952C078303AC0A93230B6F1AC6B1CE4A0633C6A98C9FA2336EBC268DEE246D9D
+      14833A4DB6DEE76A96939C351CA6451A665BF19755BA81F3757FF0B91306CC78
+      4B89CF0CDC9E987C9D2F4AA259939FD5FB164B67C9A078F4D5DE5D5CE420F2BA
+      1D0A1B7EFE0C8CF72CA07C7543F305A1F71EBFDED5F602C4C4B67681CDD1C22A
+      D6BECC1C0273674A8E49E6D27ACF5B21B0BE2E0A221BE2C0748F35E56B98DBBB
+      3AB408C1F1610F9052169FD4B781E5E5F30394E7C3FCF3D9AF356C8D2C196AEA
+      C47779BB5104CB8A7F81AD352D4AC227A5688EEFB604E2EB3E10C1C7E54DE027
+      7835025EC2940F5D7DD077D6BBF11C3EBDD10E6B0442A571B8FB14DED23733D1
+      60D93BCFB8F810FECE17C272CC81B22CBAD42C64A86BA8A2BF6A76291F16B7F4
+      8E887959655554FED1D7479FC5EF1F1133B61CCCA09F9F93F90F4D60572F1C11
+      9A1FB337887D8B8B025878AB5B69AC2A9F82FA5CEB05C457FB1BD3C8644FE619
+      B384ACB3CAC2DC71F81463D294897FC411FF2F48754A6D
+    }
   end
 end

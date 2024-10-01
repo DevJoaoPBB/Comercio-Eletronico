@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 509
+  Left = 2312
   Height = 451
-  Top = 259
+  Top = 211
   Width = 631
   Caption = 'Agenda'
   KeyPreview = True
@@ -9,8 +9,8 @@ object Form1: TForm1
   LCLVersion = '3.4.0.0'
   WindowState = wsMaximized
   object MainMenu1: TMainMenu
-    Left = 214
-    Top = 207
+    Left = 40
+    Top = 24
     object MenuItem1: TMenuItem
       Caption = 'Configurações'
       object MenuItem2: TMenuItem
@@ -19,6 +19,7 @@ object Form1: TForm1
       end
       object MenuItem3: TMenuItem
         Caption = 'Configurações do Sistema'
+        OnClick = MenuItem3Click
       end
       object Separator1: TMenuItem
         Caption = '-'

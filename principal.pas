@@ -6,8 +6,11 @@ interface
 
 uses
   Classes, SysUtils, SQLite3Conn, SQLDB, DB, dbf, Forms, Controls, Graphics,
-  Dialogs, DBGrids, StdCtrls, Menus, U_CadEmpresa, ZConnection, ZDataset,
-  ZSqlUpdate;
+  Dialogs, DBGrids, StdCtrls, Menus, BCRadialProgressBar, BCListBox,
+  atshapelinebgra, BCCheckComboBox, BCFluentProgressRing, BCFluentSlider,
+  BCGameGrid, BGRAThemeButton, ColorSpeedButton, BGRAResizeSpeedButton,
+  dtthemedclock, dtthemedgauge, DTAnalogClock, BGRAKnob, BCButton,
+  BCButtonFocus, BGRASpeedButton, U_CadEmpresa, u_componentes;
 
 type
 
@@ -21,6 +24,7 @@ type
     MenuItem4: TMenuItem;
     Separator1: TMenuItem;
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
   private
 
@@ -40,6 +44,11 @@ implementation
 procedure TForm1.MenuItem2Click(Sender: TObject);
 begin
   CadEmpresa.ShowModal;
+end;
+
+procedure TForm1.MenuItem3Click(Sender: TObject);
+begin
+  Componentes.ShowModal;
 end;
 
 procedure TForm1.MenuItem4Click(Sender: TObject);

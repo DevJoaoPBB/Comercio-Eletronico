@@ -26,10 +26,10 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="zcomponentdesign"/>
+        <PackageName Value="bgracontrols"/>
       </Item>
       <Item>
-        <PackageName Value="zcomponent"/>
+        <PackageName Value="DBFLaz"/>
       </Item>
       <Item>
         <PackageName Value="FCL"/>
@@ -65,8 +65,23 @@
         <Filename Value="u_cadempresa.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="CadEmpresa"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="U_CadEmpresa"/>
+      </Unit>
+      <Unit>
+        <Filename Value="u_loccidades.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="LocCidades"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="U_LocCidades"/>
+      </Unit>
+      <Unit>
+        <Filename Value="u_componentes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Componentes"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -78,7 +93,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <UnitOutputDirectory Value="D:\Agenda"/>
+      <UnitOutputDirectory Value="$(ProjOutDir)"/>
     </SearchPaths>
     <Linking>
       <Debugging>
